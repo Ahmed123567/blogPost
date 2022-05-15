@@ -32,67 +32,29 @@ trait cleanCodeTrait
     }
 
 
-    public function roomsDataTable($data)
+    public function commentsDataTables($data)
     {
 
         return DataTables::of($data)
             ->addIndexColumn()
-            ->addColumn('owner', function ($row) {
-
-                if ($row->user_id) {
-                    $owner = $row->user->name;
-                } else {
-                    $owner = "Avillable";
-                }
-
-                return $owner;
-            })
-            ->rawColumns(['owner'])
-            ->addColumn('action', function ($row) {
-                $actionBtn = "
-        <a href='http://127.0.0.1:8000/manage/rooms/edit/$row->id'
-         class='edit btn btn-success btn-sm'>Edit</a> 
-         ";
-
-                if ($row->user_id) {
-                    $actionBtn = $actionBtn . "
-            <a href='http://127.0.0.1:8000/manage/rooms/make-avillable/$row->id'
-            onclick='return confirm( \"Are you sure?\" )'  class='edit btn btn-danger btn-sm'>Make Avillable</a> 
-            ";
-                };
-                return $actionBtn;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
-
- 
-
-    public function floorsDataTables($data)
-    {
-
-        return DataTables::of($data)
-            ->addIndexColumn()
-            ->addColumn('creator', function($row){
-                $creator = $row->user->name;
-                return $creator;
-            })
-            ->addColumn('created', function($row){
-
-                $created_at = Carbon::createFromFormat('Y-m-d H:i:s', $row->created_at)->format('Y-m-d H:i:s');
-                return $created_at;
+            ->addColumn('owner', function($row){
+                
+                return $row -> user -> name;
             })
             ->addColumn('action', function ($row) {
                 $actionBtn = "
-                    <a href='http://127.0.0.1:8000/manage/floors/delete/$row->id' class='btn btn-danger btn-sm'
-                    
-                    onclick='return confirm( \"Are you sure?\" )' >Delete</a>
+                    <a href='http://127.0.0.1:8000/admin/comments/$row->id' class='btn btn-primary btn-sm'>View</a>
+                    <a href='http://127.0.0.1:8000/admin/comments/edit/$row->id'
+                     class='edit btn btn-success btn-sm'>Edit</a> 
+                     <a href='http://127.0.0.1:8000/admin/comments/delete/$row->id'  onclick='return confirm( \"Are you sure?\" )' class='btn btn-danger btn-sm' > Delete</a>
                      ";
-            
                 return $actionBtn;
             })
             ->rawColumns(['action'])
             ->make(true);
     }
+
+  
+  
 }
 

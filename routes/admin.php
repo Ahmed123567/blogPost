@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\manage\ManageCommentsController;
 use App\Http\Controllers\manage\ManageController;
 use App\Http\Controllers\manage\ManageFloorController;
+use App\Http\Controllers\manage\ManagePostsController;
 use App\Http\Controllers\manage\ManageRoomController;
 use App\Http\Controllers\manage\ManageUserController;
 use Illuminate\Support\Facades\Auth;
@@ -33,3 +35,22 @@ Route::group(['prefix'=> 'users'], function(){
 
 });
 
+
+
+
+Route::group(['prefix' => 'comments'], function(){
+
+    Route::get('/' , [ManageCommentsController::class , 'index'])->name('manage.comments.index');
+
+    Route::get('create' , [ManageCommentsController::class , 'create'])->name('manage.comments.create');
+
+    Route::get('edit/{comment_id}', [ManageCommentsController::class, 'edit'])->name('manage.comments.edit');
+
+
+    Route::get('delete/{comment_id}', [ManageCommentsController::class, 'delete'])->name('manage.comments.delete');
+
+    Route::post('store' ,  [ManageCommentsController::class , 'store'])->name('manage.comments.store');
+
+    Route::post('update', [ManageCommentsController::class, 'update'])->name('manage.comments.update');
+
+});
