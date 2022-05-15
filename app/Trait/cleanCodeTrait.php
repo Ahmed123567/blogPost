@@ -43,7 +43,6 @@ trait cleanCodeTrait
             })
             ->addColumn('action', function ($row) {
                 $actionBtn = "
-                    <a href='http://127.0.0.1:8000/admin/comments/$row->id' class='btn btn-primary btn-sm'>View</a>
                     <a href='http://127.0.0.1:8000/admin/comments/edit/$row->id'
                      class='edit btn btn-success btn-sm'>Edit</a> 
                      <a href='http://127.0.0.1:8000/admin/comments/delete/$row->id'  onclick='return confirm( \"Are you sure?\" )' class='btn btn-danger btn-sm' > Delete</a>

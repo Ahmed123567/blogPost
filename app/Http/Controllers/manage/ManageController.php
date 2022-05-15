@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\manage;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Floor;
 use App\Models\User;
 
@@ -13,15 +14,15 @@ class ManageController extends Controller
     public function index()
     {
 
-        $numberOfUsers = User::count();
-      
+        
         $latestUsers = User::latest()->limit(5)->get();
 
     
 
         return view('manage.index', [
 
-            'numberOfUsers' => $numberOfUsers,
+            'numberOfUsers' => User::count(),
+            'comment_count' => Comment::count(),
             'latestUsers' => $latestUsers,
             
         ]);

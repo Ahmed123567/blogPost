@@ -37,13 +37,13 @@
             <div class="col col-md-4">
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>55</h3>
-                        <p>Commments</p>
+                        <h3>{{$comment_count}}</h3>
+                        <p>Comments</p>
                     </div>
                     <div class="icon">
                         <i class="fa-solid fa-stairs"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{route('manage.comments.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
 
             </div>

@@ -83,9 +83,6 @@ class ManageCommentsController extends Controller
         Comment::find($data['comment_id'])->update([
             
             'content' => $data['content'],
-            'user_id' => $data['user_id'],
-            'post_id' => $data['post_id'],
-            'parent' => $data['parent']
             ]);
 
             return redirect()->back();

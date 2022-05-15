@@ -54,5 +54,15 @@ class User extends Authenticatable
 
     }
 
+    public function getRoleAttribute($data)
+    {
+        if ($data == 1 ){
+            return $data = 'Admin';
+        }else{
+            return $data = 'user';
+        };
+
+    }
+
 
 }
