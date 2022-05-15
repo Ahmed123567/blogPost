@@ -24,7 +24,7 @@
             <div class="col col-md-4">
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>55</h3>
+                        <h3>{{$Posts_count  }}</h3>
                         <p>Posts</p>
                     </div>
                     <div class="icon">
@@ -100,10 +100,10 @@
 
  {{-- ----------------------------------------------------------------------------------------------------- --}}
     {{-- the sconed table start --}}
-            {{-- <div class="col col-6">
+             <div class="col col-6">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Latest Updated Rooms </h3>
+                        <h3 class="card-title">Latest Posts </h3>
                     </div>
 
                     <div class="card-body p-0">
@@ -111,26 +111,18 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">#</th>
-                                    <th>Owner</th>
+                                    <th>topic</th>
                                     <th style="width: 160px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                              @foreach($latestUpdatedRooms as $room)
+                              @foreach( $latestPosts  as $post)
                                 <tr>
-                                    <td>{{$room->id}}</td>
-                                    @if (!is_null($room->user))
-                                        <td>{{$room->user->name}}</td>
-                                    @else
-                                        <td>Avilable</td>
-                                    @endif
-                                    <td>
-                                        <a href='{{route('manage.rooms.edit' ,['room_id' => $room->id])}}' class='badge bg-success'>Edit</a> 
-                                    @if ($room->user_id)
-                                        <a href='{{route('manage.rooms.avillable' ,['room_id' => $room->id])}}'
-                                            onclick='return confirm("Are you sure?" ) '  class='badge bg-danger'>Make Avillable</a> 
-                                    @endif
-                                    </td>
+                                    <td>{{$post->id}}</td>
+                                        
+                                    <td> {{$post->metadata}}</td>
+                                
+                                    
                                 </tr>
                               @endforeach
 
@@ -141,6 +133,6 @@
 
                 </div>
             </div>
-        </div> --}}
+        </div> 
     </div>
 @endsection

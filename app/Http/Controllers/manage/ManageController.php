@@ -4,6 +4,7 @@ namespace App\Http\Controllers\manage;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Posts;
 use App\Models\Floor;
 use App\Models\User;
 
@@ -16,6 +17,7 @@ class ManageController extends Controller
 
         
         $latestUsers = User::latest()->limit(5)->get();
+        $latestPosts = Posts::latest()->limit(5)->get();
 
     
 
@@ -23,7 +25,9 @@ class ManageController extends Controller
 
             'numberOfUsers' => User::count(),
             'comment_count' => Comment::count(),
+            'Posts_count' => Posts::count(),
             'latestUsers' => $latestUsers,
+            'latestPosts' =>$latestPosts
             
         ]);
     }
