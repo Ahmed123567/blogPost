@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\userInterface\CommentController;
 use App\Http\Controllers\userInterface\MainPageController;
+use App\Http\Controllers\userInterface\PostController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainPageController::class , 'index']) -> name('user.main');
 
-Route::get('/post/{post_id}', [MainPageController::class , 'post']) -> name('user.main.post')->middleware('auth');
+Route::get('search', [MainPageController::class , 'search'])->name('user.main.search');
+
+
+Route::group(['prefix' => 'post' , 'middleware' => 'auth'], function(){
+
+    Route::get('create', [PostController::class, 'create']) ->name('user.main.post.create');
+
+    Route::get('{post_id}', [PostController::class , 'index']) -> name('user.main.post');
+
+    Route::post('store', [PostController::class, 'store']) ->name('user.main.post.store');
+
+
+});
+
 
 
 Route::group(['prefix' => 'comment' , 'middleware' => 'auth'] , function(){

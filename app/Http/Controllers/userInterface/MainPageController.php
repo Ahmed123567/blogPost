@@ -7,6 +7,7 @@ use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MainPageController extends Controller
 {
@@ -19,16 +20,15 @@ class MainPageController extends Controller
         ]);
     }
 
-    public function post($post_id){
+    public function search(Request $req){
+        $text = $req->all()['search'];
 
+        
+        $posts = DB::table('posts')->where('metadata', 'Like', '%'.$text . '%')->get();
 
-        return view('userInterface.showPost',
-        [
-            'post' =>  Post::find($post_id),
-
-        ]
-    );
+        return response()->json($posts);
+    
     }
-
+   
    
 }

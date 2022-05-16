@@ -12,7 +12,7 @@
 
         <p style="display: inline-block ; margin:0%" class="lead">{{$post->user->name}}</p>
 
-        <a style="padding: 0 0 0 50px; " class="show-reply" >Show replies</a>
+        <a style="padding: 0 0 0 50px; " style="cursor: pointer" class="show-reply" >Show/hide replies</a>
         <hr />
          
   
@@ -25,11 +25,15 @@
         <p>
          {{$post->content}}
         </p>
+        @if ($post->image != null)
+        <img src="{{ asset('images/'. $post->image) }}" height="100px" width="150px" alt=""> 
+        @endif
         <hr>
 
         <h3>comments</h3> 
         @foreach ( $post->comment as $comment )
           @if ($comment->parent == -1)
+          <div>
             <img src="{{ asset('images/'. $comment->user->image) }}"  width="30px" class="img-circle elevation-2" alt="user image">
             <strong>{{$comment->user->name}}</strong>
             
@@ -46,35 +50,43 @@
             <p style="padding: 0 0 0 40px">
               {{$comment->content}}
             </p>
-                
+          </div> 
             <hr>
-            
+          
+        
           @endif
 
-          <div class="comment-reply" style="padding:  0 0 0 40px; ">
-            @foreach ($post->comment as $comment_reply )
-                @if ($comment_reply->parent == $comment->id )
-                <img src="{{ asset('images/'. $comment_reply->user->image) }}"  width="30px" class="img-circle elevation-2" alt="user image">
-                <strong>{{$comment_reply->user->name}}</strong>
-                
-                  @if ($comment_reply->user->id == Auth::user()->id)
-                      <a href="{{route('manage.comments.delete', [ 'comment_id'=> $comment->id]) }}" style="padding:0  0 0 10px;
-                          color:red; text_decorate:none;" >Delete</a>
-                        <a href="{{route('user.main.comment.edit', [ 'comment_id'=> $comment->id , 'post_id' => $post->id]) }}" style="padding:0  0 0px 10px; 
-                          color:blue; text_decorate:none;" >Edit</a>
-                  @endif    
-                
-                <p style="padding: 0 0 0 40px">
-                  {{$comment_reply->content}}
-                </p>
-                  
-              <hr>
-            
-              @endif
-            @endforeach
           
-          </div>
+          @foreach ($post->comment as $comment_reply )
+            @if ($comment_reply->parent == $comment->id )
+            <div class="comment-reply" style="padding:  0 0 0 40px; display:none; ">                
+                  <img src="{{ asset('images/'. $comment_reply->user->image) }}"  width="30px" class="img-circle elevation-2" alt="user image">
+                  <strong>{{$comment_reply->user->name}}</strong>
+                  
+                    @if ($comment_reply->user->id == Auth::user()->id)
+                        <a href="{{route('manage.comments.delete', [ 'comment_id'=> $comment->id]) }}" style="padding:0  0 0 10px;
+                            color:red; text_decorate:none;" >Delete</a>
+                          <a href="{{route('user.main.comment.edit', [ 'comment_id'=> $comment->id , 'post_id' => $post->id]) }}" style="padding:0  0 0px 10px; 
+                            color:blue; text_decorate:none;" >Edit</a>
+                    @endif    
+                <span style="padding: 0 0 0 20px;">
+                  reply to : {{ $comment->user->name}}
 
+                </span>
+                  <p style="padding: 0 0 0 40px">
+                    {{$comment_reply->content}}
+                  </p>
+                    
+                <hr>
+              
+                
+              
+            </div>
+          @endif
+        @endforeach
+
+         
+         
         @endforeach
       
        
@@ -115,7 +127,11 @@
 
     showreply.onclick = () =>{
       div.forEach(e => {
+        if (e.style.display == 'none'){
+          e.style.display = 'block'
+        }else{
           e.style.display = 'none'
+        }
       });
     }
   </script>

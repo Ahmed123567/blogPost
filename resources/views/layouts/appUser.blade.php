@@ -7,11 +7,21 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
+    
+
     <title>Tech Blog</title>
 
     <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet" />
 
     <link href="{{url('css/style.css')}}" rel="stylesheet" />
+    
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> --}}
+   
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
   </head>
 
   <body>
@@ -47,8 +57,11 @@
                     </li>
                 @endif
             @else
+            <li class="nav-item dropdown  mr-sm-2">
+              <a href="{{route('user.main.post.create')}}">Post</a>
+            </li>
                 <li class="nav-item dropdown  mr-sm-2">
-                       
+                   
                     <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
@@ -61,21 +74,25 @@
                     </div>
                 </li>
             @endguest
-              {{-- <li>
-                <a href="{{route('login')}}">Login</a>
-              </li>
-              <li>
-                <a href="{{route('register')}}">Sign up</a>
-              </li> --}}
+                              
             </ul>
+           
           </div>
         </div>
       </nav>
+
+    
 
       @yield('content')
 
 
       @stack('scripts')
+      <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+       <script src="https://kit.fontawesome.com/94efbe3b18.js" crossorigin="anonymous"></script>
+       <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+       
     <script src="{{url('js/jquery.js')}}"></script>
 
     <script src="{{url('js/bootstrap.min.js')}}"></script>

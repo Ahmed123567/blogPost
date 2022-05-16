@@ -17,7 +17,7 @@ class ManageController extends Controller
 
         
         $latestUsers = User::latest()->limit(5)->get();
-        $latestPosts = Posts::latest()->limit(5)->get();
+        $latestPosts = Post::latest()->limit(5)->get();
 
     
 
