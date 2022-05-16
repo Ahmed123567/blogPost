@@ -2,10 +2,8 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\manage\ManageCommentsController;
-use App\Http\Controllers\manage\ManageController;
-use App\Http\Controllers\manage\ManageFloorController;
 use App\Http\Controllers\manage\ManagePostsController;
-use App\Http\Controllers\manage\ManageRoomController;
+use App\Http\Controllers\manage\ManageController;
 use App\Http\Controllers\manage\ManageUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -52,5 +50,21 @@ Route::group(['prefix' => 'comments'], function(){
     Route::post('store' ,  [ManageCommentsController::class , 'store'])->name('manage.comments.store');
 
     Route::post('update', [ManageCommentsController::class, 'update'])->name('manage.comments.update');
+
+});
+
+Route::group(['prefix' => 'post'], function(){
+
+    Route::get('/' , [ManagePostsController::class , 'index'])->name('manage.post.index');
+
+    Route::get('create' , [ManagePostsController::class , 'create'])->name('manage.post.create');
+
+    Route::get('edit/{post_id}', [ManagePostsController::class, 'edit'])->name('manage.post.edit');
+
+    Route::get('delete/{post_id}', [ManagePostsController::class, 'delete'])->name('manage.post.delete');
+
+    Route::post('store' ,  [ManagePostsController::class , 'store'])->name('manage.post.store');
+
+    Route::post('update', [ManagePostsController::class, 'update'])->name('manage.post.update');
 
 });
