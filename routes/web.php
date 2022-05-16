@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\userInterface\CommentController;
+use App\Http\Controllers\userInterface\MainPageController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,15 +17,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [MainPageController::class , 'index']) -> name('user.main');
+
+Route::get('/post/{post_id}', [MainPageController::class , 'post']) -> name('user.main.post')->middleware('auth');
+
+
+Route::group(['prefix' => 'comment' , 'middleware' => 'auth'] , function(){
+
+
+    Route::get('edit/{comment_id}/post/{post_id}' , [CommentController::class , 'edit']) -> name('user.main.comment.edit');
+
+    Route::get('reply/{comment_id}/post/{post_id}' , [CommentController::class , 'reply']) -> name('user.main.comment.reply');
+
+    Route::post('reply' , [CommentController::class , 'replyStore']) -> name('user.main.comment.replyStore');
+
+    Route::post('store' , [CommentController::class , 'commentStore']) -> name('user.main.comment');
+ 
+    Route::post('update' , [CommentController::class , 'update']) -> name('user.main.comment.update');
+
+ 
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\manage;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
-use App\Models\Posts;
 use App\Models\Floor;
+use App\Models\Post;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class ManageController extends Controller
 
             'numberOfUsers' => User::count(),
             'comment_count' => Comment::count(),
-            'Posts_count' => Posts::count(),
+            'Posts_count' => Post::count(),
             'latestUsers' => $latestUsers,
             'latestPosts' =>$latestPosts
             
