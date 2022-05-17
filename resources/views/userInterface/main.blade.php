@@ -4,19 +4,34 @@
 @section('content')
 
     <div class="container">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" name="search" id="txtSearch" placeholder="Search" aria-label="Search">
-      </form>
+      <div class="row">
+        <div class="col-md-10">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" name="search" id="txtSearch" placeholder="Search" aria-label="Search">
+          </form>
+        </div>
 
+        @auth
+          
+          @if (Auth::user()->plantype == 0)
+            <div class="col-md-2">
+              <a href="{{route('user.main.premium')}}"><button class="btn btn-primary">go primam</button></a>
+            </div>   
+          @endif
+        @endauth
+      
 
+      </div>
       <div class="row" id="search-result">
           @foreach ($posts as $post )
             <div class="col-md-6">
                 <h2 class="post-title">
                    <p style="text-decoration: none">{{$post->metadata}}</p>
                 </h2>
-                <p class="lead">{{$post->user->name}}</p>
-                <p>
+                <img src="{{ asset('images/'. $post->user->image) }}"  width="20px" style="border-radius: 50%" alt=""> 
+                <span class="">{{$post->user->name}}</span>
+
+                <p style="font-size: 20px">
                     {{$post->content}}
                 </p>
                 @if ($post->image != null)

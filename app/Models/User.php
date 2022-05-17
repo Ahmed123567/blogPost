@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'plantype',
+        'num_of_posts'
     ];
 
     /**
@@ -46,7 +48,7 @@ class User extends Authenticatable
     public function getPlantypeAttribute($data)
     {
         if ($data == 100 ){
-            return $data = 'Admin';
+            return $data = 'admin';
         }else{
             return $data;
         }
@@ -57,7 +59,7 @@ class User extends Authenticatable
     public function getRoleAttribute($data)
     {
         if ($data == 1 ){
-            return $data = 'Admin';
+            return $data = 'admin';
         }else{
             return $data = 'user';
         };

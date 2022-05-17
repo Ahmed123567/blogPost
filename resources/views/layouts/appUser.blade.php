@@ -57,6 +57,14 @@
                     </li>
                 @endif
             @else
+                  
+            @if (Auth::user()->role == 'admin')
+            <li class="nav-item dropdown mr-sm-2">
+              <a  href="{{route('manage.index')}}">Admin</a>
+            </li>
+              
+            @endif
+
             <li class="nav-item dropdown  mr-sm-2">
               <a href="{{route('user.main.post.create')}}">Post</a>
             </li>
@@ -84,7 +92,6 @@
     
 
       @yield('content')
-
 
       @stack('scripts')
       <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>

@@ -5,9 +5,11 @@ namespace App\Http\Controllers\userInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
+use App\Models\User;
 use App\Trait\cleanCodeTrait;
 use App\Trait\helperTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -37,7 +39,7 @@ class PostController extends Controller
 
         $data = $req->all();
 
-
+        
         if ($req->file('image') == null) {
             $imageName = null;
         } else {
@@ -52,6 +54,16 @@ class PostController extends Controller
             'user_id' => $data['user_id'],
             'image' => $imageName
         ]);
+
+        if(Auth::user()->role == 'user'){
+            
+            $num = Auth::user()->num_of_posts; 
+
+            User::find(Auth::user()->id)->update([
+                'num_of_posts' => $num -1
+            ]);
+        }
+        
 
         return redirect()->back();
 

@@ -22,14 +22,17 @@ Route::get('/', [MainPageController::class , 'index']) -> name('user.main');
 
 Route::get('search', [MainPageController::class , 'search'])->name('user.main.search');
 
+Route::get('premium', [MainPageController::class , 'premium'])->name('user.main.premium')->middleware('auth');
+
+
 
 Route::group(['prefix' => 'post' , 'middleware' => 'auth'], function(){
 
-    Route::get('create', [PostController::class, 'create']) ->name('user.main.post.create');
+    Route::get('create', [PostController::class, 'create']) ->name('user.main.post.create')->middleware('ableToPost');
 
     Route::get('{post_id}', [PostController::class , 'index']) -> name('user.main.post');
 
-    Route::post('store', [PostController::class, 'store']) ->name('user.main.post.store');
+    Route::post('store', [PostController::class, 'store']) ->name('user.main.post.store')->middleware('ableToPost');
 
 
 });
