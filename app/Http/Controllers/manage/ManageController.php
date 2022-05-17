@@ -5,7 +5,6 @@ namespace App\Http\Controllers\manage;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Post;
-use App\Models\Floor;
 use App\Models\User;
 
 use Illuminate\Http\Request;

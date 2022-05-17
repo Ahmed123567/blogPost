@@ -12,11 +12,22 @@ class Post extends Model
     protected $table = 'posts';
 
 
-
+  
     public $fillable = [
         'content',
         'user_id',
         'metadata',
         'image'
     ];
+
+    public function user(){
+
+        return $this->belongsTo(User::class, 'user_id');
+        
+    }
+
+    public function comment(){
+        return $this->hasMany(Comment::class , 'post_id');
+    }
+
 }
