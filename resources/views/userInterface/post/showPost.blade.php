@@ -13,7 +13,7 @@
         <img src="{{ asset('images/'. $post->user->image) }}"  width="30px" style="border-radius: 50%" alt=""> 
         <span style="font-size: 18px; padding: 0 0 0 10px">{{$post->user->name}}</span>
 
-        <a style="padding: 0 0 0 50px; " style="cursor: pointer" class="show-reply" >Show/hide replies</a>
+        <a style="padding: 0 0 0 50px; cursor: pointer;" class="show-reply" >Show/hide replies</a>
         <hr />
          
   

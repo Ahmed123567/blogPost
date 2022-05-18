@@ -22,7 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'plantype',
-        'num_of_posts'
+        'num_of_posts',
+        'image'
     ];
 
     /**
@@ -49,8 +50,10 @@ class User extends Authenticatable
     {
         if ($data == 100 ){
             return $data = 'admin';
+        }elseif($data == 1){
+            return $data = 'primium';
         }else{
-            return $data;
+            return $data = 'basic'; 
         }
         ;
 

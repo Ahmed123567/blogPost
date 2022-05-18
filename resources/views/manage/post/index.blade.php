@@ -1,7 +1,7 @@
 @extends('layouts.appAdmin')
 
 @section('title')
-    Manage Comment
+    Manage Posts
 @endsection
 
 
@@ -10,16 +10,15 @@
 
 <div class="content-wrapper" style="background: none; padding:20px 60px ;">
 
-    <a  href="{{route('manage.comments.create')}}"> <button class="btn btn-info btn-sm" style="margin: 0 0 20px 0">Create Comment</button></a>
+    <a  href="{{route('manage.post.create')}}"> <button class="btn btn-info btn-sm" style="margin: 0 0 20px 0">Create Post</button></a>
 
     <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>
                 <th>id</th>
+                <th>topic</th>
                 <th style="width:30%">Content</th>
                 <th>Owner</th>
-                <th>Post</th>
-                <th>Parent</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -39,15 +38,12 @@
         var table = $('.yajra-datatable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{route('manage.comments.index')}}",
+            ajax: "{{route('manage.post.index')}}",
             columns: [
                {data: 'id', name: 'id'},
+               {data: 'metadata', name: 'metadata'},
                 {data: 'content', name: 'content'},
-                {data: 'owner', name: 'owner'},
-                {data: 'post_id', name: 'post_id'},
-
-    
-                {data: 'parent' , name:'parent'},
+                {data: 'owner', name: 'owner'},    
                
                 {
                     data: 'action', 

@@ -13,7 +13,7 @@
 
         @auth
           
-          @if (Auth::user()->plantype == 0)
+          @if (Auth::user()->plantype == 'basic')
             <div class="col-md-2">
               <a href="{{route('user.main.premium')}}"><button class="btn btn-primary">go primam</button></a>
             </div>   
@@ -23,13 +23,44 @@
 
       </div>
       <div class="row" id="search-result">
+        @foreach ($posts as $post )
+        @if ($post->pin == 1)
+          
+          <div class="col-md-6">
+              <h2 class="post-title">
+                 <p style="text-decoration: none">{{$post->metadata}}</p>
+              </h2>
+
+              <img src="{{ asset('images/'. $post->user->image) }}"  width="20px" style="border-radius: 50%" alt=""> 
+              <span class="">{{$post->user->name}}</span>
+              <a href="{{route('user.main.post.pin', ['post_id' => $post->id])}}" style="cursor: pointer; text-decoration:none; padding:0 0 0 100px;">unPin</a>
+
+              <p style="font-size: 20px">
+                  {{$post->content}}
+              </p>
+              @if ($post->image != null)
+              <img src="{{ asset('images/'. $post->image) }}" height="100px" width="150px" alt=""> 
+              @endif
+              <p>
+              <span class="glyphicon glyphicon-time"></span> 
+              {{ $post->created_at }}
+              </p>
+                 <a class="btn btn-default" href="{{route('user.main.post' , ['post_id' => $post->id])}}">Read More</a>
+          </div>
+          @endif
+        @endforeach
+
           @foreach ($posts as $post )
+          @if ($post->pin == 0)
+            
             <div class="col-md-6">
                 <h2 class="post-title">
                    <p style="text-decoration: none">{{$post->metadata}}</p>
                 </h2>
+
                 <img src="{{ asset('images/'. $post->user->image) }}"  width="20px" style="border-radius: 50%" alt=""> 
                 <span class="">{{$post->user->name}}</span>
+                <a href="{{route('user.main.post.pin', ['post_id' => $post->id])}}" style="cursor: pointer; text-decoration:none; padding:0 0 0 100px;">Pin</a>
 
                 <p style="font-size: 20px">
                     {{$post->content}}
@@ -43,7 +74,7 @@
                 </p>
                    <a class="btn btn-default" href="{{route('user.main.post' , ['post_id' => $post->id])}}">Read More</a>
             </div>
-            
+            @endif
           @endforeach
      
         </div>

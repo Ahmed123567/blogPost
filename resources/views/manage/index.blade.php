@@ -30,7 +30,7 @@
                     <div class="icon">
                         <i class="fa-solid fa-bed"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> 
+                    <a href="{{route('manage.post.index')}}" class="small-box-footer">More info<i class="fas fa-arrow-circle-right"></i></a> 
                 </div>
 
             </div>
@@ -121,9 +121,19 @@
                                     <td>{{$post->id}}</td>
                                         
                                     <td> {{$post->metadata}}</td>
-                                
-                                    
-                                </tr>
+                                    <td>
+                                        <a href="{{route('user.main.post' ,['post_id' => $post->id ])}}">
+                                            <span class="badge bg-info">View</span>
+                                        </a>
+                                        <a href="{{route('manage.post.edit' ,['post_id' => $post->id ])}}">
+                                            <span class="badge bg-success">Edit</span>
+                                        </a>
+                                        <a href="{{route('manage.post.delete' ,['post_id' => $post->id ])}}" onclick="return confirm('Are You Sure?')">
+                                            <span class="badge bg-danger">Delete</span>
+                                        </a>
+                                    </td>
+                                                            
+                               </tr>
                               @endforeach
 
 

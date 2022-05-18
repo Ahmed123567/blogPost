@@ -4,7 +4,7 @@
         <!-- Brand Logo -->
         <a href="{{route('manage.index')}}" class="brand-link">
 
-            <span class="brand-text font-weight-light">Manage Hotel</span>
+            <span class="brand-text font-weight-light">Admin Pannel</span>
         </a>
 
         <!-- Sidebar -->

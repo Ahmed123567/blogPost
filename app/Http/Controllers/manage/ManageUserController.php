@@ -5,6 +5,7 @@ namespace App\Http\Controllers\manage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserRequest;
+use App\Mail\MailUser;
 use App\Models\User;
 use App\Trait\cleanCodeTrait;
 use Carbon\Carbon;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 use App\Trait\helperTrait;
+use Illuminate\Support\Facades\Mail;
+
 // use Carbon\Carbon;
 
 class ManageUserController extends Controller
@@ -141,6 +144,30 @@ class ManageUserController extends Controller
     {
 
         User::find($user_id)->delete();
+
+        return redirect()->back();
+    }
+
+
+    public function email($user_id){
+        
+        return view('manage.user.email' , [
+            'user' => User::find($user_id)
+        ]);
+
+    }
+
+    //send email
+
+    public function sendEmail(Request $req){
+
+        $data = $req->all();
+
+        $user = User::find($data['user_id']);
+
+        $user-> message = $data['content'];
+
+        Mail::to($user->email)->send(new MailUser( $user ));
 
         return redirect()->back();
     }

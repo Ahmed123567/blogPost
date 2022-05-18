@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\userInterface\ProfileController;
 use App\Http\Controllers\userInterface\CommentController;
 use App\Http\Controllers\userInterface\MainPageController;
 use App\Http\Controllers\userInterface\PostController;
@@ -32,8 +33,18 @@ Route::group(['prefix' => 'post' , 'middleware' => 'auth'], function(){
 
     Route::get('{post_id}', [PostController::class , 'index']) -> name('user.main.post');
 
+    Route::get('pin/{post_id}', [PostController::class , 'pin']) -> name('user.main.post.pin');
+
     Route::post('store', [PostController::class, 'store']) ->name('user.main.post.store')->middleware('ableToPost');
 
+
+});
+
+Route::group(['prefix' => 'profile'] , function(){
+
+    Route::post('/image-upload' , [ProfileController::class, 'image'])->name('main.image');
+
+    Route::get('/', [ProfileController::class , 'index'])->name('main.profile.index');
 
 });
 
