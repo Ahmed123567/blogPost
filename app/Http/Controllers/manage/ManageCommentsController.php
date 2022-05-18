@@ -93,6 +93,8 @@ class ManageCommentsController extends Controller
 
         Comment::find($comment_id)->delete();
 
+        Comment::where('parent' , $comment_id)->delete();
+
         return redirect()->back();
     }
 

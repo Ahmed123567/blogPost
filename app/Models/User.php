@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'plantype',
         'num_of_posts',
-        'image'
+        'image',
+        'money'
     ];
 
     /**
@@ -70,4 +71,12 @@ class User extends Authenticatable
     }
 
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function($model){
+            $model->money = rand(0,2000);
+        });
+    }
 }

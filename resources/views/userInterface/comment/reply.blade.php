@@ -59,10 +59,9 @@
                             <div class="error" style="color: red">{{ $message }}</div>
                     @enderror
 
-                        <input type="hidden" name='comment_id' value="{{$comment->id}}">
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                         <input type="hidden" name="post_id" value="{{$post->id}}">
-                        <input type="hidden" name="parent" value="{{$comment->id}}">
+                        <input type="hidden" name="parent" value="{{$comment_reply->id}}">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

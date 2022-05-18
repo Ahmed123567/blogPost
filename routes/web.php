@@ -23,7 +23,7 @@ Route::get('/', [MainPageController::class , 'index']) -> name('user.main');
 
 Route::get('search', [MainPageController::class , 'search'])->name('user.main.search');
 
-Route::get('premium', [MainPageController::class , 'premium'])->name('user.main.premium')->middleware('auth');
+Route::get('premium', [MainPageController::class , 'premium'])->name('user.main.premium')->middleware('auth','hasMoney');
 
 
 

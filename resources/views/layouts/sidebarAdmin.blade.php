@@ -34,8 +34,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa-solid fa-bed"></i>
+                        <a href="{{route('manage.post.index')}}" class="nav-link">
+                            <i class="fa-regular fa-address-card"></i>
                             <p>
                                 Posts
                             </p>
@@ -43,8 +43,8 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{route('manage.comments.index')}}" class="nav-link">
-                            <i class="nav-icon fa-solid fa-stairs"></i>
-                            <p>
+                            <i class="fa-regular fa-comment"></i>
+                             <p>
                                 Commentes 
                             </p>
                         </a>

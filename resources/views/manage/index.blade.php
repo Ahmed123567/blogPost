@@ -28,7 +28,7 @@
                         <p>Posts</p>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-bed"></i>
+                        <i class="fa-regular fa-address-card"></i>
                     </div>
                     <a href="{{route('manage.post.index')}}" class="small-box-footer">More info<i class="fas fa-arrow-circle-right"></i></a> 
                 </div>
@@ -41,8 +41,8 @@
                         <p>Comments</p>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-stairs"></i>
-                    </div>
+                        <i class="fa-regular fa-comment"></i>
+                        </div>
                     <a href="{{route('manage.comments.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
 

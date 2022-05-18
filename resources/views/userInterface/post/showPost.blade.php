@@ -34,6 +34,7 @@
         <h3>comments</h3> 
         @foreach ( $post->comment as $comment )
           @if ($comment->parent == -1)
+         
           <div>
             <img src="{{ asset('images/'. $comment->user->image) }}"  width="30px" class="img-circle elevation-2" alt="user image">
             <strong>{{$comment->user->name}}</strong>
@@ -60,14 +61,16 @@
           
           @foreach ($post->comment as $comment_reply )
             @if ($comment_reply->parent == $comment->id )
-            <div class="comment-reply" style="padding:  0 0 0 40px; display:none; ">                
+            
+
+            <div class="comment-reply" style="padding:  0 0 0 40px; display:none;">                
                   <img src="{{ asset('images/'. $comment_reply->user->image) }}"  width="30px" class="img-circle elevation-2" alt="user image">
                   <strong>{{$comment_reply->user->name}}</strong>
-                  
+                
                     @if ($comment_reply->user->id == Auth::user()->id)
-                        <a href="{{route('manage.comments.delete', [ 'comment_id'=> $comment->id]) }}" style="padding:0  0 0 10px;
+                        <a href="{{route('manage.comments.delete', [ 'comment_id'=> $comment_reply->id]) }}" style="padding:0  0 0 10px;
                             color:red; text_decorate:none;" >Delete</a>
-                          <a href="{{route('user.main.comment.edit', [ 'comment_id'=> $comment->id , 'post_id' => $post->id]) }}" style="padding:0  0 0px 10px; 
+                          <a href="{{route('user.main.comment.edit', [ 'comment_id'=> $comment_reply->id , 'post_id' => $post->id]) }}" style="padding:0  0 0px 10px; 
                             color:blue; text_decorate:none;" >Edit</a>
                     @endif    
                 <span style="padding: 0 0 0 20px;">
@@ -92,8 +95,6 @@
       
        
 
-        <hr />
-        
             <div class="well" style="background-color: rgb(112, 112, 176)">
                 <h4 style="color: white">Leave a Comment:</h4>
                 <form action="{{route('user.main.comment')}}" method="POST">
