@@ -30,13 +30,13 @@ Route::get('premium', [MainPageController::class , 'premium'])->name('user.main.
 
 Route::group(['prefix' => 'post' , 'middleware' => 'auth'], function(){
 
-    Route::get('create', [PostController::class, 'create']) ->name('user.main.post.create')->middleware('ableToPost');
+    Route::get('create', [PostController::class, 'create']) ->name('user.main.post.create')->middleware('isPrimium','ableToPost');
 
     Route::get('{post_id}', [PostController::class , 'index']) -> name('user.main.post');
 
     Route::get('pin/{post_id}', [PostController::class , 'pin']) -> name('user.main.post.pin');
 
-    Route::post('store', [PostController::class, 'store']) ->name('user.main.post.store')->middleware('ableToPost');
+    Route::post('store', [PostController::class, 'store']) ->name('user.main.post.store')->middleware('isPrimium','ableToPost');
 
 
 });
@@ -67,9 +67,9 @@ Route::group(['prefix' => 'comment' , 'middleware' => 'auth'] , function(){
  
 });
 
-Route::get('/contact-me',[ContactController::class,'contact'])-> name('user.main.contact')->middleware('ableToPost');
+Route::get('/contact-me',[ContactController::class,'contact'])-> name('user.main.contact')->middleware('isPrimium');
 
-Route::post('/Send-Email',[ContactController::class,'sendEmail'])-> name('user.main.sendEmail')->middleware('ableToPost');
+Route::post('/Send-Email',[ContactController::class,'sendEmail'])-> name('user.main.sendEmail')->middleware('isPrimium',);
 
 Auth::routes();
 

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ableToPost
+class isPrimium
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,9 @@ class ableToPost
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->num_of_posts == 0 && Auth::user()->role == 'user'){
-            return redirect()->route('user.main')->withErrors(['msg' => 'Cant post you run out of posts']);
+        if(Auth::user()->plantype == 'basic'){
+            return redirect()->route('user.main')->withErrors(['msg' => 'you have to primium']);
         }
-
         return $next($request);
     }
 }

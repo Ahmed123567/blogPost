@@ -76,12 +76,12 @@
               <a href="{{route('main.profile.index')}}">Profile</a>
             </li>
 
-            <li class="nav-item dropdown  mr-sm-2">
-              <a href="{{route('user.main.contact')}}">Contact me</a>
-            </li>
-
-
-
+            @if (Auth::user()->role == 'user')
+              <li class="nav-item dropdown  mr-sm-2">
+                <a href="{{route('user.main.contact')}}">Contact me</a>
+              </li>  
+            @endif
+            
 
                 <li class="nav-item dropdown  mr-sm-2">
                    

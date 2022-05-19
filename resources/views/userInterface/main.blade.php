@@ -4,7 +4,7 @@
 @section('content')
 
 @if($errors->any())
-<div class="alert alert-danger" style="margin: -20px 0px 10px ">
+<div class="alert alert-danger" style="margin: -20px 0px 10px ; text-align:center">
  
   <h4>{{$errors->first()}}</h4>
  

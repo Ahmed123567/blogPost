@@ -66,7 +66,7 @@ class Kernel extends HttpKernel
         'ableToPost' => \App\Http\Middleware\ableToPost::class,
         'isAdmin' => \App\Http\Middleware\isAdmin::class,
         'hasMoney' => \App\Http\Middleware\hasMoney::class,
-
+        'isPrimium' => \App\Http\Middleware\isPrimium::class,
 
     ];
 }
