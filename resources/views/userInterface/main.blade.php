@@ -37,12 +37,12 @@
 
           @foreach ($posts as $post )
            
-            <div class="col-md-6">
+            <div class="col-md-6" style="width: 50%">
                 <h2 class="post-title">
                    <p style="text-decoration: none">{{$post->metadata}}</p>
                 </h2>
 
-                <img src="{{ asset('images/'. $post->user->image) }}"  width="20px" style="border-radius: 50%" alt=""> 
+                <img src="{{ asset('images/'. $post->user->image) }}" class="img" width="20px" style="border-radius: 50%" alt=""> 
                 <span class="">{{$post->user->name}}</span>
               @auth
                 
@@ -113,7 +113,7 @@ $.ajax({
     success: function(data) {
 
       let result = ''
-
+      console.log($('#search-result').html)
       $('#search-result').html('')
       data.forEach(element => {
         console.log(element.user)
@@ -150,33 +150,10 @@ $.ajax({
 
 });
 
-          }
-
-  $('#txtSearch').on('keyup', function(){
-
-    console.log('hello')
-      var text = $('#txtSearch').val();
-
-      $.ajax({
-
-          type:"GET",
-          url: '{{route("user.main.search")}}',
-          data: {
-           
-            search: $('#txtSearch').val()
-          },
-          success: function(data) {
-
-              console.log(data);
-
-          }
+  }
 
 
 
-      });
-
-
-  });
 
 
      </script>

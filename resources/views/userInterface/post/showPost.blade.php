@@ -35,7 +35,7 @@
         @foreach ( $post->comment as $comment )
           @if ($comment->parent == -1)
          
-          <div>
+          <div class="comment">
             <img src="{{ asset('images/'. $comment->user->image) }}"  width="30px" class="img-circle elevation-2" alt="user image">
             <strong>{{$comment->user->name}}</strong>
             
@@ -52,8 +52,9 @@
             <p style="padding: 0 0 0 40px">
               {{$comment->content}}
             </p>
-          </div> 
             <hr>
+          </div> 
+            
           
         
           @endif
@@ -100,15 +101,16 @@
                 <form action="{{route('user.main.comment')}}" method="POST">
                     @csrf
                     <div class="form-group">
-                    <textarea class="form-control" name="content" rows="3"></textarea>
-                    @error('cpntent')
+                    <textarea class="form-control txt" name="content"  rows="3"></textarea>
+                    @error('content')
                             <div class="error" style="color: red">{{ $message }}</div>
                     @enderror
-                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                        <input type="hidden" name="post_id" value="{{$post->id}}">
-                        <input type="hidden" name="parent" value="-1">
+                        <input type="hidden" name="user_id" class="usr" value="{{Auth::user()->id}}">
+                        <input type="hidden" name="post_id" class="pst" value="{{$post->id}}">
+                        <input type="hidden" name="parent" class="prt" value="-1">
+                        <input type="hidden" name="" class="csr" value="{{csrf_token()}}">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="btn-submit">Submit</button>
                 </form>
             </div>
         
@@ -136,5 +138,11 @@
         }
       });
     }
+
+    let btn = document.querySelector('#btn-submit');
+
+    
+
+
   </script>
 @endpush

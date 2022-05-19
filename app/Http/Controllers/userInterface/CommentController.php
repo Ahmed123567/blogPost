@@ -13,6 +13,8 @@ class CommentController extends Controller
 {
     public function commentStore(CommentRequest $req){
 
+      
+
         $data = $req -> all();
 
         Comment::create([
