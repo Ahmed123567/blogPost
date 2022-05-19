@@ -4,6 +4,7 @@ use App\Http\Controllers\userInterface\ProfileController;
 use App\Http\Controllers\userInterface\CommentController;
 use App\Http\Controllers\userInterface\MainPageController;
 use App\Http\Controllers\userInterface\PostController;
+use App\Http\Controllers\userInterface\ContactController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,9 @@ Route::group(['prefix' => 'comment' , 'middleware' => 'auth'] , function(){
  
 });
 
+Route::get('/contact-me',[ContactController::class,'contact'])-> name('user.main.contact')->middleware('ableToPost');
+
+Route::post('/Send-Email',[ContactController::class,'sendEmail'])-> name('user.main.sendEmail')->middleware('ableToPost');
 
 Auth::routes();
 

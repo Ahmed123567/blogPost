@@ -42,7 +42,6 @@
 
             <a class="navbar-brand" href="{{ route("user.main")  }}">Tech Blog</a>
 
-            <a class="navbar-brand" href="{{route('user.main')}}">Tech Blog</a>
 
           </div>
   
@@ -76,6 +75,14 @@
             <li class="nav-item dropdown  mr-sm-2">
               <a href="{{route('main.profile.index')}}">Profile</a>
             </li>
+
+            <li class="nav-item dropdown  mr-sm-2">
+              <a href="{{route('user.main.contact')}}">Contact me</a>
+            </li>
+
+
+
+
                 <li class="nav-item dropdown  mr-sm-2">
                    
                     <a class="dropdown-item" href="{{ route('logout') }}"

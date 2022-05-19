@@ -53,7 +53,7 @@
                   <a href="{{route('user.main.post.pin', ['post_id' => $post->id])}}" style="cursor: pointer; text-decoration:none; padding:0 0 0 100px;">Pin</a>
 
                   @else
-                  <a href="{{route('user.main.post.pin', ['post_id' => $post->id])}}" style="cursor: pointer; text-decoration:none; padding:0 0 0 100px;">unPin</a>
+                  <a href="{{route('user.main.post.pin', ['post_id' => $post->id])}}" style="cursor: pointer; text-decoration:none; padding:0 0 0 100px;">Pinned</a>
 
                   @endif
                   @endif
