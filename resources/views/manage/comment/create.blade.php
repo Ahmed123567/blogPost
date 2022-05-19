@@ -42,21 +42,19 @@
                             <div class="col-4"> 
                                 <label for="exampleInputFile">Post</label>
 
-                                <select name="post_id" class="form-control">
-                                    @foreach ($users as  $user)
-                                        <option value="{{$user->id}}"> {{$user->name}}</option>    
+                                <select name="post_id" class="form-control sel-post">
+                                    @foreach ($posts as  $post)
+                                        <option value="{{$post->id}}"> {{$post->id}}=>{{$post->metadata}}</option>    
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-4">
                                 <label for="exampleInputFile">Parent</label>
 
-                                <select name="parent" class="form-control">
+                                <select name="parent"  class="form-control sel-comment">
                                     <option value="-1">-1</option>
                                     @foreach ($comments as  $comment)
-                                        @if ($comment->parent == -1)
-                                            <option value="{{$comment->id}}"> {{$comment->id}}</option>                                                
-                                        @endif
+                                            <option value="{{$comment->id}}"> {{$comment->id}}=>{{$comment->user->name}}</option>                                               
                                     @endforeach
                                 </select>
                             </div>
@@ -78,6 +76,31 @@
 
 @push('scripts')
     <script>
+        let post = document.querySelector('.sel-post');
+        let comment = document.querySelector('.sel-comment')
 
+        post.addEventListener('change' , ()=>{
+            $.ajax({
+                type:'POST',
+                url:`{{route("manage.comments.store")}}`,
+                dataType: "json",
+                data:{
+                    _token : '{{csrf_token()}}',
+                    post_id : post.value
+                },
+                success:function(data){
+                    
+                    $('.sel-comment').html('<option value="-1">-1</option>')
+                    data.forEach(e => {
+                        result = `                   
+                        <option value="${e.id}"> ${e.id}=>${e.username}</option>                                                   
+                        `
+                        $('.sel-comment').append(result)
+                    });
+                    
+                   
+                },
+           })
+        })
     </script>
 @endpush

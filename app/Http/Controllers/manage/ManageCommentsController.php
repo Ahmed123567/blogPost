@@ -4,10 +4,12 @@ namespace App\Http\Controllers\manage;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 use App\Trait\cleanCodeTrait;
 use App\Trait\helperTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\ViewName;
 use Laravel\Ui\Presets\React;
 
@@ -37,10 +39,14 @@ class ManageCommentsController extends Controller
 
     public function create(){
 
+        $post = Post::first();
+        $first_comments =   Comment::where( 'post_id',$post->id )->where('parent' , -1)->get();;
+
         return view('manage.comment.create' , 
         [
             'users' =>  User::all(),
-            'comments' => Comment::all()
+            'comments' => $first_comments,
+            'posts' => Post::all()
         ]
     ); 
     }
@@ -48,9 +54,19 @@ class ManageCommentsController extends Controller
 
     public function store(Request $req){
 
+        if($req -> ajax()){
+          
+            $comments = Comment::where( 'post_id', $req->all()['post_id'])->where('parent' , -1)->get();
+           foreach ($comments as $comment){
+            
+            $comment->username = $comment->user->name;
+           
+        }
+           return response()->json($comments);
+        }   
+
         $data = $req -> all();
-    
-        
+         
 
         Comment::create([
             'content' => $data['content'],
