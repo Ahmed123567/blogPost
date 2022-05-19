@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnsToCommentsTable extends Migration
+class AddChangesToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class AddColumnsToCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('comments', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table -> integer("num_of_posts")->default(0)->change();
         });
     }
 
@@ -22,5 +24,10 @@ class AddColumnsToCommentsTable extends Migration
      *
      * @return void
      */
-    
+    public function down()
+    {
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
+    }
 }

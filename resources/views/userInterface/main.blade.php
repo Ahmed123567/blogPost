@@ -15,7 +15,7 @@
           
           @if (Auth::user()->plantype == 0)
             <div class="col-md-2">
-              <a href="{{route('user.main.premium')}}"><button class="btn btn-primary">go primam</button></a>
+              <a href="{{route('user.main.premium')}}"><button class="btn btn-primary">go premium</button></a>
             </div>   
           @endif
         @endauth
