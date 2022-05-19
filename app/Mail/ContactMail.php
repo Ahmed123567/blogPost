@@ -29,6 +29,6 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Contact Messae')->view('userInterface.contact.send', ['user' => $this->user]);
+        return $this->from($this->user->email, 'blog')->subject('Contact Messae')->view('userInterface.contact.send', ['user' => $this->user]);
     }
 }

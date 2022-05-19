@@ -26,6 +26,7 @@ class ContactController extends Controller
 
         Mail::to('moelshazlee101@gmail.com')->send(new ContactMail($user));
 
+        return redirect()->back();
 
 
 
