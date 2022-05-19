@@ -69,4 +69,24 @@ class PostController extends Controller
 
     }
 
+
+    public function pin($post_id){
+
+        $pin = Post::find($post_id)->pin;
+
+        if($pin == 1){
+            $pin = 0;
+        }else{
+            $pin = 1;
+        }
+
+        Post::find($post_id)->update([
+            'pin' => $pin
+        ]);
+
+        return redirect()->back();
+
+    }
+
+
 }

@@ -1,7 +1,7 @@
 @extends('layouts.appAdmin')
 
 @section('title')
-    Manage Users
+    Manage Comment
 @endsection
 
 

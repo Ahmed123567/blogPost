@@ -11,13 +11,13 @@ class Post extends Model
 
     protected $table = 'posts';
 
-
-  
     public $fillable = [
         'content',
         'user_id',
         'metadata',
-        'image'
+        'image',
+        'pin'
+
     ];
 
     public function user(){

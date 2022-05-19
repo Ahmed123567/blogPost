@@ -28,7 +28,7 @@
                         <p>Posts</p>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-bed"></i>
+                        <i class="fa-regular fa-address-card"></i>
                     </div>
                     <a href="{{route('manage.post.index')}}" class="small-box-footer">More info<i class="fas fa-arrow-circle-right"></i></a> 
                 </div>
@@ -41,8 +41,8 @@
                         <p>Comments</p>
                     </div>
                     <div class="icon">
-                        <i class="fa-solid fa-stairs"></i>
-                    </div>
+                        <i class="fa-regular fa-comment"></i>
+                        </div>
                     <a href="{{route('manage.comments.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
 
@@ -121,6 +121,17 @@
                                     <td>{{$post->id}}</td>
                                         
                                     <td> {{$post->metadata}}</td>
+                                    <td>
+                                        <a href="{{route('user.main.post' ,['post_id' => $post->id ])}}">
+                                            <span class="badge bg-info">View</span>
+                                        </a>
+                                        <a href="{{route('manage.post.edit' ,['post_id' => $post->id ])}}">
+                                            <span class="badge bg-success">Edit</span>
+                                        </a>
+                                        <a href="{{route('manage.post.delete' ,['post_id' => $post->id ])}}" onclick="return confirm('Are You Sure?')">
+                                            <span class="badge bg-danger">Delete</span>
+                                        </a>
+                                    </td>
                                                             
                                </tr>
                               @endforeach

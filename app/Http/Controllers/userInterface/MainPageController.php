@@ -17,7 +17,7 @@ class MainPageController extends Controller
 
         return view('userInterface.main', [
 
-            'posts' =>  Post::paginate(6),
+            'posts' =>  Post::orderBy('pin' , 'desc')->orderBy('created_at' , 'asc')->paginate(6),
 
         ]);
     }
@@ -35,9 +35,11 @@ class MainPageController extends Controller
 
     public function premium(){
       
+
        User::find(Auth::user()->id)->update([
             'plantype' => 1,
-            'num_of_posts' => 2
+            'num_of_posts' => 2,
+            'money' => Auth::user()->money - 1000
         ]);
     
         return redirect()->back();

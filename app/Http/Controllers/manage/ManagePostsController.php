@@ -17,20 +17,19 @@ class ManagePostsController extends Controller
     use helperTrait;
     public function index(Request $request){
 
-        // dd(Post::latest()->get());
 
-        
+        if ($request->ajax()) {
             $data = Post::latest()->get();
 
-        return view('manage.post.index',
+            // postsDataTables is a function from cleanCodeTrait
 
-        [
-            'posts'=>$data
-        ]
-    
-    
-    );
+            return $this->postsDataTables($data);
+        }
+
+
+        return view('manage.post.index');
     }
+
 
 
 

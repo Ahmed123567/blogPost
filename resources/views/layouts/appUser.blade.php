@@ -39,7 +39,11 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
+
             <a class="navbar-brand" href="{{ route("user.main")  }}">Tech Blog</a>
+
+            <a class="navbar-brand" href="{{route('user.main')}}">Tech Blog</a>
+
           </div>
   
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -67,6 +71,10 @@
 
             <li class="nav-item dropdown  mr-sm-2">
               <a href="{{route('user.main.post.create')}}">Post</a>
+            </li>
+           
+            <li class="nav-item dropdown  mr-sm-2">
+              <a href="{{route('main.profile.index')}}">Profile</a>
             </li>
                 <li class="nav-item dropdown  mr-sm-2">
                    

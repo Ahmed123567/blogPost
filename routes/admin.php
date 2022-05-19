@@ -26,6 +26,12 @@ Route::group(['prefix'=> 'users'], function(){
 
     Route::get('delete/{user_id}', [ManageUserController::class, 'delete'])->name('manage.users.delete');
 
+
+    Route::get('email/{user_id}', [ManageUserController::class, 'email'])->name('manage.users.email');
+
+
+    Route::post('email', [ManageUserController::class, 'sendEmail'])->name('manage.users.sendEmail');
+
     Route::post('store', [ManageUserController::class, 'store'])->name('manage.users.store');
 
     Route::post('update', [ManageUserController::class, 'update'])->name('manage.users.update');
@@ -34,7 +40,7 @@ Route::group(['prefix'=> 'users'], function(){
 });
 
 
-
+//comments routes
 
 Route::group(['prefix' => 'comments'], function(){
 
@@ -52,6 +58,9 @@ Route::group(['prefix' => 'comments'], function(){
     Route::post('update', [ManageCommentsController::class, 'update'])->name('manage.comments.update');
 
 });
+
+
+// posts routes
 
 Route::group(['prefix' => 'post'], function(){
 
