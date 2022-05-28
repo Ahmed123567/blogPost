@@ -46,7 +46,7 @@ Route::group(['prefix' => 'comments'], function(){
 
     Route::get('/' , [ManageCommentsController::class , 'index'])->name('manage.comments.index');
 
-    Route::match(['post', 'get'], 'create' , [ManageCommentsController::class , 'create'])->name('manage.comments.create');
+    Route::get('create' , [ManageCommentsController::class , 'create'])->name('manage.comments.create');
 
     Route::get('edit/{comment_id}', [ManageCommentsController::class, 'edit'])->name('manage.comments.edit');
 
