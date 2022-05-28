@@ -56,12 +56,12 @@
                 <form action="{{route('user.main.comment.update')}}" method="POST">
                     @csrf
                     <div class="form-group">
-                    <textarea class="form-control" name="content" rows="3">{{$comment->content}}</textarea>
+                    <textarea class="form-control" name="content" rows="3">{{$comment_edit->content}}</textarea>
                     @error('content')
                             <div class="error" style="color: red">{{ $message }}</div>
                     @enderror
 
-                        <input type="hidden" name='comment_id' value="{{$comment->id}}">
+                        <input type="hidden" name='comment_id' value="{{$comment_edit->id}}">
                         <input type="hidden" name="post_id" value="{{$post->id}}">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

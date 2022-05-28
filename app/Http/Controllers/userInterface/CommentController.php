@@ -32,7 +32,7 @@ class CommentController extends Controller
 
         return view('userInterface.comment.edit', [
             
-            'comment' => Comment::find($comment_id),
+            'comment_edit' => Comment::find($comment_id),
             'post' => Post::find($post_id)
         ]);
 
@@ -54,8 +54,7 @@ class CommentController extends Controller
 
 
     public function reply($comment_id, $post_id){
-        // dd($comment_id);
-        // dd(Comment::find($comment_id));
+        
         return view('userInterface.comment.reply', [
             
             'comment_reply' => Comment::find($comment_id),
