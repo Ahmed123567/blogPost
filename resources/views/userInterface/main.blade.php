@@ -138,7 +138,7 @@ $.ajax({
                 <span class="glyphicon glyphicon-time"></span> 
                   ${element.created_at}
                 </p>
-                   <a class="btn btn-default" href="{{route('user.main.post' , ['post_id' => $post->id])}}">Read More</a>
+                   <a class="btn btn-default" href="post/${element.id}">Read More</a>
             </div>
         `
         $('#search-result').append(result)

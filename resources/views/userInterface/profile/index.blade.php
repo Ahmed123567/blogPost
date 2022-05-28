@@ -10,7 +10,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <form action="{{route('main.image')}}" method="post" enctype="multipart/form-data">
+                  <form action="{{route('main.image')}}" method="post" enctype="multipart/form-data">
                       @csrf
                       <input type="file" name="image" class="upload-image"  onchange="form.submit()" style="display:none" > 
                       <input type="hidden"  name="user_id" value="{{Auth::user()->id}}">

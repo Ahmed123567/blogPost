@@ -85,8 +85,6 @@ class ManageCommentsController extends Controller
         return view('manage.comment.edit', 
         [
             'commente' => Comment::find($comment_id),
-            'users' => User::all(),
-            'comments' => Comment::all()
         ]
     );
      

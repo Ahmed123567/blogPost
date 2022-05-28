@@ -69,7 +69,7 @@ Route::group(['prefix' => 'comment' , 'middleware' => 'auth'] , function(){
 
 Route::get('/contact-me',[ContactController::class,'contact'])-> name('user.main.contact')->middleware('isPrimium');
 
-Route::post('/Send-Email',[ContactController::class,'sendEmail'])-> name('user.main.sendEmail')->middleware('isPrimium',);
+Route::post('/Send-Email',[ContactController::class,'sendEmail'])-> name('user.main.sendEmail')->middleware('isPrimium');
 
 Auth::routes();
 
