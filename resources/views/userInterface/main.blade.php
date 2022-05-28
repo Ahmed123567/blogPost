@@ -11,7 +11,14 @@
 </div>
 @endif
 
-
+@if ($userCount == 0)
+ <h3>
+   there is no admin account
+   " INSERT INTO users (name, email, role, password , plantype, image)
+   VALUES (admin , admin@email.com , 1, your password, 100, default.png );
+    "
+ </h3>
+@endif
 
     <div class="container">
       <div class="row">

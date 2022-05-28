@@ -18,6 +18,7 @@ class MainPageController extends Controller
         return view('userInterface.main', [
 
             'posts' =>  Post::orderBy('pin' , 'desc')->orderBy('created_at' , 'asc')->paginate(6),
+            'userCount' => User::where('role', 1)->count()
 
         ]);
     }
