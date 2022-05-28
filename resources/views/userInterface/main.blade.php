@@ -34,9 +34,10 @@
       </div>
       <div class="row" id="search-result">
      
-
+       
+          
           @foreach ($posts as $post )
-           
+          @isset($post)
             <div class="col-md-6" style="width: 50%">
                 <h2 class="post-title">
                    <p style="text-decoration: none">{{$post->metadata}}</p>
@@ -79,8 +80,9 @@
                 </p>
                    <a class="btn btn-default" href="{{route('user.main.post' , ['post_id' => $post->id])}}">Read More</a>
             </div>
+            @endisset
           @endforeach
-     
+          
         </div>
 
 
